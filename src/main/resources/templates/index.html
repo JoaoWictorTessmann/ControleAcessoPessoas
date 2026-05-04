@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Controle de Acesso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/style.css}" href="css/style.css">
+</head>
+<body>
+
+  <div class="ca-root">
+
+    <!-- Cabeçalho com indicador de conexão -->
+    <div class="ca-header">
+      <div class="ca-header-dot" id="conn-dot"></div>
+      <span class="ca-title">Controle de Acesso</span>
+    </div>
+
+    <!-- Cards de métricas: total de presentes e limite configurado -->
+    <div class="ca-metrics">
+      <div class="ca-metric">
+        <div class="ca-metric-label">Presentes</div>
+        <div class="ca-metric-value" id="val-total">—</div>
+      </div>
+      <div class="ca-metric">
+        <div class="ca-metric-label">Limite</div>
+        <div class="ca-metric-value" id="val-limite">—</div>
+      </div>
+    </div>
+
+    <!-- Barra de progresso de ocupação + badge de status -->
+    <div class="ca-progress-wrap">
+      <div class="ca-progress-header">
+        <span class="ca-progress-label">Ocupação</span>
+        <span class="ca-badge ca-badge-ok" id="status-badge">Disponível</span>
+      </div>
+      <div class="ca-track">
+        <div class="ca-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- Feedback contextual: aparece por 3s após cada ação -->
+    <div class="ca-feedback" id="feedback"></div>
+
+    <!-- Botões de entrada e saída -->
+    <div class="ca-actions">
+      <button class="ca-btn" onclick="acao('entrada')">
+        <span class="ca-btn-icon">↑</span>
+        Entrada
+        <span class="ca-btn-sub">Registrar chegada</span>
+      </button>
+      <button class="ca-btn" onclick="acao('saida')">
+        <span class="ca-btn-icon">↓</span>
+        Saída
+        <span class="ca-btn-sub">Registrar saída</span>
+      </button>
+    </div>
+
+    <!-- Seção de configuração: altera o limite máximo via /config/limite -->
+    <div class="ca-config">
+      <div class="ca-config-label">Alterar limite</div>
+      <div class="ca-config-row">
+        <input class="ca-input" type="number" id="input-limite" placeholder="Ex: 50" min="1" />
+        <button class="ca-save-btn" onclick="salvarLimite()">Salvar</button>
+      </div>
+    </div>
+
+    <!-- Botão de reset: zera o contador com confirmação -->
+    <button class="ca-danger-btn" onclick="resetar()">Zerar contador</button>
+
+    <!-- Log de última atualização com indicador de pulso -->
+    <div class="ca-log">
+      <div class="ca-log-dot"></div>
+      <span id="log-msg">Conectando...</span>
+    </div>
+
+  </div>
+
+  <script th:src="@{/js/javascript.js}" src="js/javascript.js"></script>
+</body>
+</html>

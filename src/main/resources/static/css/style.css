@@ -1,0 +1,313 @@
+/* Reset base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Corpo centralizado, fundo escuro */
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #0f1117;
+  color: #e8e8e8;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Container principal limitado em largura */
+.ca-root {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ── Cabeçalho ── */
+.ca-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+/* Ponto piscante: verde = conectado, vermelho = erro */
+.ca-header-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: blink 2s ease-in-out infinite;
+  transition: background 0.3s;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+.ca-title {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7a7f9a;
+}
+
+/* ── Cards de métricas ── */
+.ca-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ca-metric {
+  background: #1a1d27;
+  border: 0.5px solid #2e3147;
+  border-radius: 12px;
+  padding: 1.25rem 1rem;
+}
+
+.ca-metric-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4a4f6a;
+  margin-bottom: 6px;
+}
+
+/* Fonte mono nos números — sensação de painel técnico */
+.ca-metric-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 36px;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1;
+}
+
+/* ── Barra de ocupação ── */
+.ca-progress-wrap {
+  background: #1a1d27;
+  border: 0.5px solid #2e3147;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 10px;
+}
+
+.ca-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.ca-progress-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4a4f6a;
+}
+
+/* Badge de status: disponível ou lotado */
+.ca-badge {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  transition: all 0.3s;
+}
+
+.ca-badge-ok {
+  background: #0d2e1a;
+  color: #4ade80;
+  border: 0.5px solid #166534;
+}
+
+.ca-badge-full {
+  background: #2e0d0d;
+  color: #f87171;
+  border: 0.5px solid #7f1d1d;
+}
+
+/* Trilha e preenchimento da barra */
+.ca-track {
+  height: 3px;
+  background: #2e3147;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.ca-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: #4ade80;
+  /* Transição suave ao mudar o valor de ocupação */
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
+  width: 0%;
+}
+
+/* Barra fica vermelha quando lotado */
+.ca-fill.danger {
+  background: #f87171;
+}
+
+/* ── Feedback contextual ── */
+.ca-feedback {
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: none;
+  transition: opacity 0.2s;
+}
+
+.ca-feedback.show { display: block; }
+
+.ca-feedback.ok {
+  background: #0d2e1a;
+  color: #4ade80;
+  border: 0.5px solid #166534;
+}
+
+.ca-feedback.err {
+  background: #2e0d0d;
+  color: #f87171;
+  border: 0.5px solid #7f1d1d;
+}
+
+/* ── Botões de ação (entrada / saída) ── */
+.ca-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ca-btn {
+  background: #1a1d27;
+  border: 0.5px solid #2e3147;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #e8e8e8;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  transition: background 0.15s, opacity 0.15s;
+  text-align: left;
+}
+
+.ca-btn:hover  { background: #22263a; }
+.ca-btn:active { opacity: 0.6; }
+
+.ca-btn-icon {
+  font-size: 16px;
+  line-height: 1;
+  color: #7a7f9a;
+}
+
+.ca-btn-sub {
+  font-size: 11px;
+  color: #4a4f6a;
+  font-weight: 400;
+}
+
+/* ── Configuração de limite ── */
+.ca-config {
+  background: #1a1d27;
+  border: 0.5px solid #2e3147;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 10px;
+}
+
+.ca-config-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4a4f6a;
+  margin-bottom: 10px;
+}
+
+.ca-config-row {
+  display: flex;
+  gap: 8px;
+}
+
+.ca-input {
+  flex: 1;
+  background: #0f1117;
+  border: 0.5px solid #2e3147;
+  border-radius: 8px;
+  color: #e8e8e8;
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  padding: 9px 12px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.ca-input:focus {
+  border-color: #4a5568;
+}
+
+/* Botão primário (salvar limite) */
+.ca-save-btn {
+  background: #e8e8e8;
+  color: #0f1117;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.ca-save-btn:hover  { opacity: 0.85; }
+.ca-save-btn:active { opacity: 0.6; }
+
+/* Botão destrutivo (zerar contador) */
+.ca-danger-btn {
+  width: 100%;
+  background: transparent;
+  border: 0.5px solid #7f1d1d;
+  border-radius: 10px;
+  color: #f87171;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 11px;
+  cursor: pointer;
+  margin-bottom: 1.25rem;
+  transition: background 0.15s;
+}
+
+.ca-danger-btn:hover { background: #2e0d0d; }
+
+/* ── Log de última atualização ── */
+.ca-log {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #4a4f6a;
+}
+
+.ca-log-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #4a4f6a;
+  flex-shrink: 0;
+}
